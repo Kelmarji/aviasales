@@ -1,0 +1,22 @@
+.filterList {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px lightgrey solid;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    gap:20px;
+    h3 {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.test {
+    input {
+        border-radius: 50%;
+    }
+}
+
+
