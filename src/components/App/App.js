@@ -3,6 +3,7 @@ import * as a from 'antd';
 
 import Header from '../Header';
 import LeftFilter from '../LeftFilter';
+import TicketList from '../TicketsList';
 
 import s from './App.module.scss';
 
@@ -12,7 +13,7 @@ const App = () => {
       <LeftFilter />
       <div>
         <Header />
-        <div>Tickets</div>
+        <TicketList />
         <a.Button />
       </div>
     </div>
