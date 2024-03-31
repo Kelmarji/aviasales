@@ -21,3 +21,9 @@ const App = () => {
 };
 
 export default App;
+
+/* 
+  left filter width more
+  font weight more
+  footer btn
+*/

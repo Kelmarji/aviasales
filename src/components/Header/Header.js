@@ -1,13 +1,20 @@
 import React from 'react';
-import * as a from 'antd';
+
+import h from './Header.module.scss';
 
 const Header = () => {
   return (
-    <a.Radio.Group>
-      <a.Radio.Button value="cheap">Самый дешёвый</a.Radio.Button>
-      <a.Radio.Button value="faster">Самый быстрый</a.Radio.Button>
-      <a.Radio.Button value="fiftyfifty">Оптимальный</a.Radio.Button>
-    </a.Radio.Group>
+    <div className={h.headerContainer}>
+      <button className={h.btnHeader} value="cheap">
+        <h3>Самый дешёвый</h3>
+      </button>
+      <button className={h.btnHeader} value="faster">
+        <h3>Самый быстрый</h3>
+      </button>
+      <button className={h.btnHeader} value="fiftyfifty">
+        <h3>Оптимальный</h3>
+      </button>
+    </div>
   );
 };
 

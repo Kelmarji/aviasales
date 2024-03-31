@@ -6,12 +6,12 @@ import f from './LeftFilter.module.scss';
 const LeftFilter = () => {
   return (
     <div className={f.filterList}>
-      <h3>Количество Пересадок</h3>
-      <a.Checkbox className={f.test} />
-      <a.Checkbox />
-      <a.Checkbox />
-      <a.Checkbox />
-      <a.Checkbox />
+      <h3>количество пересадок</h3>
+      <a.Checkbox>Все</a.Checkbox>
+      <a.Checkbox>1 пересадка</a.Checkbox>
+      <a.Checkbox>2 пересадки</a.Checkbox>
+      <a.Checkbox>3 пересадки</a.Checkbox>
+      <a.Checkbox>без Пересадок</a.Checkbox>
     </div>
   );
 };
