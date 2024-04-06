@@ -1,4 +1,3 @@
-// changeFilterTransfer
-// changeFilterTickets
+import store from './store';
 
-cons;
+export default store;
