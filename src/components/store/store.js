@@ -12,17 +12,20 @@ const { searchId } = await fetch('https://aviasales-test-api.kata.academy/search
 
   export const arrayTickets = () => {
     return async (dispatch) => {
-      let stopstatus = false;
+      let stopStatus = false;
   
-      while (!stopstatus) {
-        const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
-          .then((response) => response.json())
-          .then((response) => response)
-          .catch((err) => console.error(err));
+      while (!stopStatus) {
+        try {
+          const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+            .then((response) => response.json())
+            .then((response) => response)
+            .catch((err) => console.error(err));
   
-        dispatch({ type: 'LOAD_TICKETS', payload: tickets });
-        console.log(tickets.stop);
-        stopstatus = tickets.stop;
+          dispatch({ type: 'LOAD_TICKETS', payload: tickets });
+          stopStatus = tickets.stop;
+        } catch (error) {
+          // ignor materi 
+        }
       }
     };
   };
