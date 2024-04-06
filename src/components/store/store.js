@@ -1,7 +1,18 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable indent */
 /* eslint-disable default-param-last */
 /* eslint-disable prettier/prettier */
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
+
+const { searchId } = await fetch('https://aviasales-test-api.kata.academy/search')
+  .then((response) => response.json())
+  .then((response) => response)
+  .catch((err) => console.error(err));
+
+const arrayTickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+  .then((response) => response.json())
+  .then((response) => response)
+  .catch((err) => console.error(err));
 
 const loggerMiddleware = (store) => (next) => (action) => {
   console.log('old state', store.getState());
@@ -9,11 +20,13 @@ const loggerMiddleware = (store) => (next) => (action) => {
   console.log('New state:', store.getState());
   return result;
 };
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const defaultState = {
+  searchId,
   filterCheck: { All: true, noTrans: false, trans1: true, trans2: true, trans3: true },
   filterTickets: 'optimal',
-  tickets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  tickets: arrayTickets,
   sliceTicket: 5,
 };
 const reducer = (state = defaultState, action) => {
@@ -60,6 +73,6 @@ const reducer = (state = defaultState, action) => {
       return state;
   }
 };
-const store = createStore(reducer, applyMiddleware(loggerMiddleware));
+const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware)));
 
 export default store;

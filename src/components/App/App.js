@@ -15,7 +15,13 @@ const App = () => {
       <div>
         <Header />
         <TicketList />
-        <button className={s.moreTicket} onClick={() => disp({ type: 'sliceMore' })}>
+        <button
+          className={s.moreTicket}
+          onClick={() => {
+            disp({ type: 'update' });
+            disp({ type: 'sliceMore' });
+          }}
+        >
           Показать еще 5 билетов!
         </button>
       </div>
