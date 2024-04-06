@@ -3,22 +3,23 @@
 /* eslint-disable default-param-last */
 /* eslint-disable prettier/prettier */
 import { applyMiddleware, createStore, compose } from 'redux';
+import { thunk } from 'redux-thunk';
 
 const { searchId } = await fetch('https://aviasales-test-api.kata.academy/search')
   .then((response) => response.json())
   .then((response) => response)
   .catch((err) => console.error(err));
 
-const arrayTickets = async () => {
-  const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
-    .then((response) => response.json())
-    .then((response) => response)
-    .catch((err) => console.error(err));
+export const arrayTickets = () => {
+  return async (dispatch) => {
+    const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+      .then((response) => response.json())
+      .then((response) => response)
+      .catch((err) => console.error(err));
 
-  return tickets;
+    dispatch({ type: 'LOAD_TICKETS', payload: tickets });
+  };
 };
-
-// const tickets = await arrayTickets();
 
 const loggerMiddleware = (store) => (next) => (action) => {
   console.log('old state', store.getState());
@@ -32,12 +33,14 @@ const defaultState = {
   searchId,
   filterCheck: { All: true, noTrans: false, trans1: true, trans2: true, trans3: true },
   filterTickets: 'optimal',
-  tickets: await arrayTickets(),
+  tickets: [],
   loadedTickets: false,
   sliceTicket: 5,
 };
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'LOAD_TICKETS':
+      return { ...state, tickets: action.payload, loadedTickets: true };
     case 'sliceMore':
       return { ...state, sliceTicket: state.sliceTicket + 5 };
     case 'change_tickets_filter_CHEAP':
@@ -80,6 +83,6 @@ const reducer = (state = defaultState, action) => {
       return state;
   }
 };
-const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware)));
+const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware, thunk)));
 
 export default store;

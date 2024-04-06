@@ -1,22 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
+import { Spin } from 'antd';
 
 import store from './components/store';
 import App from './components/App';
 import logo from './Logo.png';
 
 const OutPut = () => {
+  const loaded = useSelector(({ loadedTickets }) => loadedTickets);
   return (
     <div className="AppContainer">
       <img className="Logo" src={logo} />
-      <Provider store={store}>
-        <App />
-      </Provider>
+      {loaded ? null : <Spin size="large" style={{ position: 'absolute', bottom: '5%', right: '2%' }} />}
+      <App />
     </div>
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<OutPut />);
+root.render(
+  <Provider store={store}>
+    <OutPut />
+  </Provider>
+);
