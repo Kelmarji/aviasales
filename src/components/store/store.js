@@ -9,10 +9,16 @@ const { searchId } = await fetch('https://aviasales-test-api.kata.academy/search
   .then((response) => response)
   .catch((err) => console.error(err));
 
-const arrayTickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
-  .then((response) => response.json())
-  .then((response) => response)
-  .catch((err) => console.error(err));
+const arrayTickets = async () => {
+  const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+    .then((response) => response.json())
+    .then((response) => response)
+    .catch((err) => console.error(err));
+
+  return tickets;
+};
+
+// const tickets = await arrayTickets();
 
 const loggerMiddleware = (store) => (next) => (action) => {
   console.log('old state', store.getState());
@@ -26,7 +32,8 @@ const defaultState = {
   searchId,
   filterCheck: { All: true, noTrans: false, trans1: true, trans2: true, trans3: true },
   filterTickets: 'optimal',
-  tickets: arrayTickets,
+  tickets: await arrayTickets(),
+  loadedTickets: false,
   sliceTicket: 5,
 };
 const reducer = (state = defaultState, action) => {
