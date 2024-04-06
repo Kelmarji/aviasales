@@ -13,7 +13,7 @@ const OutPut = () => {
   return (
     <div className="AppContainer">
       <img className="Logo" src={logo} />
-      {loaded ? null : <Spin size="large" style={{ position: 'absolute', bottom: '5%', right: '2%' }} />}
+      {loaded ? null : <Spin size="large" style={{ position: 'static', bottom: '5%', right: '2%' }} />}
       <App />
     </div>
   );

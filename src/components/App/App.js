@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { arrayTickets } from '../store/store';
 import Header from '../Header';
 import LeftFilter from '../LeftFilter';
 import TicketList from '../TicketsList';
@@ -9,6 +10,9 @@ import s from './App.module.scss';
 
 const App = () => {
   const disp = useDispatch();
+  useEffect(() => {
+    disp(arrayTickets());
+  }, []);
   return (
     <div className={s.App}>
       <LeftFilter />
@@ -18,7 +22,6 @@ const App = () => {
         <button
           className={s.moreTicket}
           onClick={() => {
-            disp({ type: 'update' });
             disp({ type: 'sliceMore' });
           }}
         >

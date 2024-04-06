@@ -10,16 +10,22 @@ const { searchId } = await fetch('https://aviasales-test-api.kata.academy/search
   .then((response) => response)
   .catch((err) => console.error(err));
 
-export const arrayTickets = () => {
-  return async (dispatch) => {
-    const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
-      .then((response) => response.json())
-      .then((response) => response)
-      .catch((err) => console.error(err));
-
-    dispatch({ type: 'LOAD_TICKETS', payload: tickets });
+  export const arrayTickets = () => {
+    return async (dispatch) => {
+      let stopstatus = false;
+  
+      while (!stopstatus) {
+        const tickets = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
+          .then((response) => response.json())
+          .then((response) => response)
+          .catch((err) => console.error(err));
+  
+        dispatch({ type: 'LOAD_TICKETS', payload: tickets });
+        console.log(tickets.stop);
+        stopstatus = tickets.stop;
+      }
+    };
   };
-};
 
 const loggerMiddleware = (store) => (next) => (action) => {
   console.log('old state', store.getState());
@@ -40,7 +46,7 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'LOAD_TICKETS':
-      return { ...state, tickets: action.payload, loadedTickets: true };
+      return { ...state, tickets: state.tickets.concat(action.payload.tickets), loadedTickets: action.payload.stop ? action.payload.stop : false };
     case 'sliceMore':
       return { ...state, sliceTicket: state.sliceTicket + 5 };
     case 'change_tickets_filter_CHEAP':
