@@ -1,3 +1,4 @@
+$grayColor: #a0b0b9;
 .ticketBody {
   padding: 10px;
   display: flex;
@@ -20,62 +21,28 @@
   color: #2196f3;
 }
 
-.time {
-  position: relative;
-  left: -10%;
+.segmentsInner {
+  display: flex;
+  flex-direction: column;
 }
-
-.time::before {
-  position: relative;
-  bottom: 100%;
-  left: 50%;
-  content: 'MOW - HKT';
-  color: #a0b0b9;
-}
-
-.way {
-  position: relative;
-  left: -10%;
-}
-
-.way::before {
-  position: relative;
-  bottom: 100%;
-  left: 50%;
-  content: 'В ПУТИ';
-  color: #a0b0b9;
-}
-
-.cunt {
-  position: relative;
-  left: -10%;
-}
-
-.cunt::before {
-  position: relative;
-  bottom: 100%;
-  left: 50%;
-  content: 'Пересадки';
-  color: #a0b0b9;
-}
-
 .ticketTop {
   padding: 0px 10px 0px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.ticketMid {
+
+.ticketBody {
   gap: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   // justify-content: space-between;
   padding-right: 50px;
 }
-.ticketBot {
-  gap: 20px;
-  display: flex;
+
+.ticketSegment {
   flex-direction: row;
-  // justify-content: space-between;
-  padding-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 15%;
 }
