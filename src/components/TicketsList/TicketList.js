@@ -5,7 +5,7 @@ import Ticket from '../Ticket/Ticket';
 
 const TicketList = () => {
   const sliceTicket = useSelector((state) => state.sliceTicket);
-  const tickets  = useSelector((state) => state.tickets);
+  const tickets = useSelector((state) => state.tickets);
   console.log(tickets);
   const ticketElem = tickets.map((item, index) => {
     return <Ticket key={`${index}ticket`} ticket={item} />;
