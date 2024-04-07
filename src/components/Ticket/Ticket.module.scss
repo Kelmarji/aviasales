@@ -1,6 +1,8 @@
 $grayColor: #a0b0b9;
 .ticketBody {
-  padding: 10px;
+  padding: 15px;
+  padding-right: 0;
+  padding-left: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -14,7 +16,7 @@ $grayColor: #a0b0b9;
 .price {
   padding: 0;
   margin: 0;
-  margin-left: 25px;
+  margin-left: 0;
   font-weight: 600;
   size: 24px;
   line-height: 24px;
@@ -22,17 +24,28 @@ $grayColor: #a0b0b9;
 }
 
 .segmentsInner {
+  width: 462px;
   display: flex;
   flex-direction: column;
+  span {
+    font-size: 1rem;
+  }
+  span:nth-child(1) {
+    color: $grayColor;
+  }
+  span:nth-child(2) {
+    font-weight: 600;
+  }
 }
 .ticketTop {
-  padding: 0px 10px 0px 0px;
+  padding: 0px 50px 0px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .ticketBody {
+  padding-right: 0 !important;
   gap: 20px;
   display: flex;
   flex-direction: column;
@@ -44,5 +57,5 @@ $grayColor: #a0b0b9;
   flex-direction: row;
   display: flex;
   justify-content: space-between;
-  margin-right: 15%;
+  margin-right: 5%;
 }

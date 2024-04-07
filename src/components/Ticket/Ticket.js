@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 
 import t from './Ticket.module.scss';
@@ -5,22 +6,40 @@ import t from './Ticket.module.scss';
 const Segm = (props) => {
   const { date, destination, duration, origin, stops } = props.item;
   const sT = new Date(date); // вылет
-  const eT = new Date(new Date(date).getTime() + duration * 60 * 100); // прилёт
-  const time = `${sT.getHours()}:${sT.getMinutes()} - ${eT.getHours()}:${eT.getMinutes()}`;
-  console.log(time);
+  const eT = new Date(sT.getTime() + duration * 60 * 1000); // прилёт
+  const durOut = new Date((duration - 180) * 60 * 1000);
+  const timeFormat = (time) => {
+    let hours = String(time.getHours()).split('');
+    let minutes = String(time.getMinutes()).split('');
+    if (minutes.length === 2) {
+      minutes = minutes.join('');
+    }
+    if (hours.length === 2) {
+      hours = hours.join('');
+    }
+    if (hours.length < 2) {
+      hours = `0${String(time.getHours())}`;
+    }
+    if (minutes.length < 2) {
+      minutes = `0${String(time.getMinutes())}`;
+    }
+    return `${hours}:${minutes}`;
+  };
 
   return (
     <div className={t.ticketSegment}>
       <div className={t.segmentsInner}>
         <span className={t.time}>{`${origin} - ${destination}`}</span>
-        <span>{time}</span>
+        <span>{`${timeFormat(sT)} - ${timeFormat(eT)}`}</span>
       </div>
       <div className={t.segmentsInner}>
-        <span>время в пути</span>
-        <span className={t.way}>{duration}</span>
+        <span>В ПУТИ</span>
+        <span className={t.way}>{timeFormat(durOut)}</span>
       </div>
       <div className={t.segmentsInner}>
-        <span>{`${stops.length} пересадок`}</span>
+        <span>
+          {stops.length > 1 ? `${stops.length} пересадки` : stops.length === 1 ? '1 пересадка' : '0·пересадок'}
+        </span>
         <span className={t.cunt}>{[stops.join(', ')]}</span>
       </div>
     </div>
@@ -43,39 +62,3 @@ const Ticket = ({ ticket }) => {
 };
 
 export default Ticket;
-// /*
-// interface Ticket {
-//   // Цена в рублях
-//   price: number
-//   // Код авиакомпании (iata)
-//   carrier: string
-//   // Массив перелётов.
-//   // В тестовом задании это всегда поиск "туда-обратно" значит состоит из двух элементов
-//   segments: [
-//     {
-//       // Код города (iata)
-//       origin: string
-//       // Код города (iata)
-//       destination: string
-//       // Дата и время вылета туда
-//       date: string
-//       // Массив кодов (iata) городов с пересадками
-//       stops: string[]
-//       // Общее время перелёта в минутах
-//       duration: number
-//     },
-//     {
-//       // Код города (iata)
-//       origin: string
-//       // Код города (iata)
-//       destination: string
-//       // Дата и время вылета обратно
-//       date: string
-//       // Массив кодов (iata) городов с пересадками
-//       stops: string[]
-//       // Общее время перелёта в минутах
-//       duration: number
-//     }
-//   ]
-// }
-// * /
