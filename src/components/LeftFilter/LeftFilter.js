@@ -19,10 +19,10 @@ const LeftFilter = () => {
           className={f.testing}
           type="checkbox"
           value="All"
-          checked={(trans2 && trans1 && trans3) || All}
+          checked={trans1 && trans1 && trans3}
           onChange={(e) => dispCheck(e.target.value, e.target.checked)}
         />
-        <span className={All ? f.customChecked : f.customUnchecked}>All</span>
+        <span className={(trans2 && trans1 && trans3) || All ? f.customChecked : f.customUnchecked}>Все</span>
       </label>
       <label>
         <input
