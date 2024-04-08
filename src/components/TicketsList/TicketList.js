@@ -15,7 +15,7 @@ const TicketList = () => {
     return (
       <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <div style={{ height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-          <antd.Alert message="Технические Шоколадки" description={searchId} type="warning" showIcon />;
+          <antd.Alert message="Технические Неполадки" description={searchId} type="warning" showIcon />;
           <antd.Spin />
         </div>
       </ul>
@@ -59,6 +59,23 @@ const TicketList = () => {
     );
   if (!trans1 && !trans2 && trans3)
     tickets = tickets.filter((t) => t.segments[0].stops.length === 3 && t.segments[1].stops.length === 3);
+
+  if (tickets.length === 0) {
+    return (
+      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+          <antd.Alert
+            message="Нам очень жаль."
+            description={'Рейсов, подходящих под заданные фильтры, не найдено'}
+            type="warning"
+            showIcon
+          />
+          ;
+          <antd.Spin />
+        </div>
+      </ul>
+    );
+  }
   const ticketElem = tickets.map((item, index) => {
     return <Ticket key={`${index}ticket`} ticket={item} />;
   });

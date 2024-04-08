@@ -21,7 +21,7 @@ const App = () => {
       <Online>
         <div className={s.App}>
           <LeftFilter />
-          <div className={s.ROTEBAL}>
+          <div className={s.AppBody}>
             <Header />
             <TicketList />
             <button
@@ -52,9 +52,3 @@ const App = () => {
 };
 
 export default App;
-
-/* 
-  left filter width more
-  font weight more
-  footer btn
-*/
