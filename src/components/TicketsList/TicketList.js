@@ -9,6 +9,7 @@ const TicketList = () => {
   const filtersCheck = useSelector((state) => state.filterCheck);
   const filtersSort = useSelector((state) => state.filterTickets);
   if (filtersSort === 'optimal') {
+    tickets = tickets.filter((t) => t.segments[0].duration !== 0 && t.segments[1].duration !== 0);
     tickets.sort((A, B) => A.price / A.segments[0].duration - B.price / B.segments[0].duration);
   }
   if (filtersSort === 'cheap') {
@@ -17,15 +18,35 @@ const TicketList = () => {
   if (filtersSort === 'faster') {
     tickets.sort((A, B) => A.segments[0].duration - B.segments[0].duration);
   }
-  const { All, noTrans, trans1, trans2, trans3 } = filtersCheck;
+  const { noTrans, trans1, trans2, trans3 } = filtersCheck;
   if (noTrans) {
     tickets = tickets.filter((t) => t.segments[0].stops.length === 0 && t.segments[1].stops.length === 0);
   }
-  if (All || (trans1 && trans2 && trans3)) {
-    tickets = tickets.filter((item) => item);
-  }
-  if (!All && trans1) tickets = tickets.filter((t) => t.segments[0].stops.length === 1 && t.segments[1].stops.length === 1);
-  console.log(filtersCheck);
+  if (trans1 && trans2 && trans3) tickets = tickets.filter((t) => t);
+  if (trans1 && !trans2 && !trans3)
+    tickets = tickets.filter((t) => t.segments[0].stops.length === 1 && t.segments[1].stops.length === 1);
+  if (trans1 && trans2 && !trans3)
+    tickets = tickets.filter(
+      (t) =>
+        (t.segments[0].stops.length === 1 && t.segments[1].stops.length === 1) ||
+        (t.segments[0].stops.length === 2 && t.segments[1].stops.length === 2)
+    );
+  if (trans1 && !trans2 && trans3)
+    tickets = tickets.filter(
+      (t) =>
+        (t.segments[0].stops.length === 1 && t.segments[1].stops.length === 1) ||
+        (t.segments[0].stops.length === 3 && t.segments[1].stops.length === 3)
+    );
+  if (!trans1 && trans2 && !trans3)
+    tickets = tickets.filter((t) => t.segments[0].stops.length === 2 && t.segments[1].stops.length === 2);
+  if (!trans1 && trans2 && trans3)
+    tickets = tickets.filter(
+      (t) =>
+        (t.segments[0].stops.length === 2 && t.segments[1].stops.length === 2) ||
+        (t.segments[0].stops.length === 3 && t.segments[1].stops.length === 3)
+    );
+  if (!trans1 && !trans2 && trans3)
+    tickets = tickets.filter((t) => t.segments[0].stops.length === 3 && t.segments[1].stops.length === 3);
   const ticketElem = tickets.map((item, index) => {
     return <Ticket key={`${index}ticket`} ticket={item} />;
   });

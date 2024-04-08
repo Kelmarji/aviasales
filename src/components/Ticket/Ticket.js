@@ -23,7 +23,8 @@ const Segm = (props) => {
     if (minutes.length < 2) {
       minutes = `0${String(time.getMinutes())}`;
     }
-    return `${hours}:${minutes}`;
+
+    return `${hours}:${minutes}` === '00:00' ? '24:00' : `${hours}:${minutes}`;
   };
 
   return (

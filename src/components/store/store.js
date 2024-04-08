@@ -56,11 +56,11 @@ const reducer = (state = defaultState, action) => {
     case 'sliceMore':
       return { ...state, sliceTicket: state.sliceTicket + 5 };
     case 'change_tickets_filter_CHEAP':
-      return { ...state, filterTickets: 'cheap' };
+      return { ...state, filterTickets: 'cheap', sliceTicket: 5 };
     case 'change_tickets_filter_FASTER':
-      return { ...state, filterTickets: 'faster' };
+      return { ...state, filterTickets: 'faster', sliceTicket: 5 };
     case 'change_tickets_filter_OPTIMA':
-      return { ...state, filterTickets: 'optimal' };
+      return { ...state, filterTickets: 'optimal', sliceTicket: 5 };
     case 'changeCheckboxAll':
       if (action.payload)
         return {
