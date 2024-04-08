@@ -1,82 +1,69 @@
+$grayColor: #a0b0b9;
 .ticketBody {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 502px;
-    height: 184px;
-    border-radius: 2px;
-    box-shadow: 0px 2px 8px 0px #0000001A;
-    background-color: #fff;
-    
+  padding: 15px;
+  padding-right: 0;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 502px;
+  height: 184px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 8px 0px #0000001a;
+  background-color: #fff;
 }
 
 .price {
-    padding: 0;
-    margin: 0;
-    margin-left: 25px;
+  padding: 0;
+  margin: 0;
+  margin-left: 0;
+  font-weight: 600;
+  size: 24px;
+  line-height: 24px;
+  color: #2196f3;
+}
+
+.segmentsInner {
+  width: 462px;
+  display: flex;
+  flex-direction: column;
+  span {
+    font-size: 1rem;
+  }
+  span:nth-child(1) {
+    color: $grayColor;
+  }
+  span:nth-child(2) {
     font-weight: 600;
-    size: 24px;
-    line-height: 24px;
-    color: #2196F3;
+  }
 }
-
-.time {
-    position: relative;
-    left: -10%;
-}
-
-.time::before {
-    position: relative;
-    bottom: 100%;
-    left: 50%;
-    content: "MOW - HKT";
-    color: #A0B0B9;
-}
-
-.way {
-    position: relative;
-    left: -10%;
-}
-
-.way::before {
-    position: relative;
-    bottom: 100%;
-    left: 50%;
-    content: "В ПУТИ";
-    color: #A0B0B9;
-} 
-
-.cunt {
-    position: relative;
-    left: -10%;
-}
-
-.cunt::before {
-    position: relative;
-    bottom: 100%;
-    left: 50%;
-    content: "Пересадки";
-    color: #A0B0B9;
-}
-
 .ticketTop {
-    padding: 0px 10px 0px 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  padding: 0px 50px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.ticketMid {
-    gap: 20px;
-    display: flex;
-    flex-direction: row;
-    // justify-content: space-between;
-    padding-right: 50px;
+
+.ticketBody {
+  padding-right: 0 !important;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  padding-right: 50px;
 }
-.ticketBot {
-    gap: 20px;
-    display: flex;
-    flex-direction: row;
-    // justify-content: space-between;
-    padding-right: 50px;
+
+.ticketSegment {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5%;
+}
+
+@media (max-width: 768px) {
+  .ticketBody {
+    font-size: 1rem;
+    flex-direction: column;
+    width: 77vw;
+  }
 }
