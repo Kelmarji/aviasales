@@ -12,7 +12,7 @@
     'Helvetica Neue',
     sans-serif;
   color: #4a4a4a;
-  margin: 20px;
+  margin: 0;
   display: flex;
   flex-direction: row;
   gap: 25px;
@@ -36,13 +36,12 @@
   .App {
     font-size: 1rem;
     flex-direction: column;
-    width: 77vw;
+    width: 100%;
     align-items: center;
   }
   .ROTEBAL {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
   }
 }

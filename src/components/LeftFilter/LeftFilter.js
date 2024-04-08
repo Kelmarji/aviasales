@@ -1,5 +1,4 @@
 import React from 'react';
-import * as a from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
 import f from './LeftFilter.module.scss';
@@ -15,40 +14,56 @@ const LeftFilter = () => {
   return (
     <div className={f.filterList}>
       <h3>количество пересадок</h3>
-      <a.ConfigProvider
-        theme={{
-          components: {
-            Checkbox: {
-              colorPrimary: 'white',
-              colorWhite: '#2196F3', // галочка
-              colorBorder: '#9ABBCE', // color border
-              colorPrimaryBorder: '#9ABBCE',
-              colorPrimaryHover: 'white',
-              /* here is your component tokens */
-            },
-          },
-        }}
-      >
-        <a.Checkbox
+      <label>
+        <input
+          className={f.testing}
+          type="checkbox"
           value="All"
           checked={(trans2 && trans1 && trans3) || All}
           onChange={(e) => dispCheck(e.target.value, e.target.checked)}
-        >
-          Все
-        </a.Checkbox>
-        <a.Checkbox value="noTrans" checked={noTrans} onChange={(e) => dispCheck('NoTrans', e.target.checked)}>
-          без Пересадок
-        </a.Checkbox>
-        <a.Checkbox value="trans1" checked={statusCheckbox.trans1} onChange={() => dispCheck('Trans1')}>
-          1 пересадка
-        </a.Checkbox>
-        <a.Checkbox value="trans2" checked={statusCheckbox.trans2} onChange={() => dispCheck('Trans2')}>
-          2 пересадки
-        </a.Checkbox>
-        <a.Checkbox value="trans3" checked={statusCheckbox.trans3} onChange={() => dispCheck('Trans3')}>
-          3 пересадки
-        </a.Checkbox>
-      </a.ConfigProvider>
+        />
+        <span className={All ? f.customChecked : f.customUnchecked}>All</span>
+      </label>
+      <label>
+        <input
+          className={f.testing}
+          type="checkbox"
+          value="noTrans"
+          checked={noTrans}
+          onChange={(e) => dispCheck('NoTrans', e.target.checked)}
+        />
+        <span className={noTrans ? f.customChecked : f.customUnchecked}>без пересадок</span>
+      </label>
+      <label>
+        <input
+          className={f.testing}
+          type="checkbox"
+          value="trans1"
+          checked={trans1}
+          onChange={(e) => dispCheck('Trans1', e.target.checked)}
+        />
+        <span className={trans1 ? f.customChecked : f.customUnchecked}>1 пересадка</span>
+      </label>
+      <label>
+        <input
+          className={f.testing}
+          type="checkbox"
+          value="trans2"
+          checked={trans2}
+          onChange={(e) => dispCheck('Trans2', e.target.checked)}
+        />
+        <span className={trans2 ? f.customChecked : f.customUnchecked}>2 пересадки</span>
+      </label>
+      <label>
+        <input
+          className={f.testing}
+          type="checkbox"
+          value="trans3"
+          checked={trans3}
+          onChange={(e) => dispCheck('Trans3', e.target.checked)}
+        />
+        <span className={trans3 ? f.customChecked : f.customUnchecked}>3 пересадки</span>
+      </label>
     </div>
   );
 };

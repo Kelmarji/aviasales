@@ -1,6 +1,9 @@
+$borderUnchecked: rgba(154, 187, 206, 1);
+$checked: rgba(33, 150, 243, 1);
+
 .filterList {
   display: flex;
-  text-wrap: nowrap;
+  flex-wrap: nowrap;
   flex-direction: column;
   background-color: white;
   box-shadow: 0px 2px 8px 0px #0000001a;
@@ -20,50 +23,47 @@
   }
 }
 
-.checkbox-wrapper {
-  width: 40px;
-  height: 40px;
-  border: 2px solid gray;
-  margin: 30px auto;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: white;
+.testing {
+    display: none;
 }
 
-.checkbox-wrapper input {
-  display: none;
+.customChecked::before {
+    position: relative;
+    right: 5px;
+    top: 1px;
+    content: ' ✔ ';
+    padding-right: 1px;
+    color:$checked;
+    width: 13px;
+    height: 13px;
+    border: 1px solid $checked;
+    border-radius: 3px;
+    background: none;
 }
 
-.checkbox-wrapper label {
-  width: 100%;
-  height: 100%;
-  display: block;
-  background: transparent;
-  cursor: pointer;
-  visibilty: hidden;
-  position: absolute;
-  z-index: 10;
+.customUnchecked::before {
+    position: relative;
+    right: 5px;
+    top: 1px;
+    content: '     ';
+    color:$checked;
+    width: 13px;
+    height: 13px;
+    border: 1px solid $borderUnchecked;
+    border-radius: 3px;
+    background: none;
 }
 
-.checkbox-wrapper span {
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  border-radius: 25px;
-}
 
-.checkbox-wrapper #modern-checkbox:checked+span {
-  background: #0095ff;
-}
+
+
 
 @media (max-width: 768px) {
   .filterList {
+    align-self: start;
     font-size: 1rem;
-    width: auto;
+    // width: 100%;
     display: flex;
-    align-items: center;
+    border-radius: 15px;
   }
 }

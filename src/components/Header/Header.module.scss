@@ -48,15 +48,15 @@ $mainColor: #2196f3;
   .headerContainer {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
   }
 
   .btnHeader:nth-child(1) {
-    border-radius: 0;
+    border-radius: 15px 15px 0px 0px;
   }
   
   .btnHeader:nth-child(3) {
-    border-radius: 0;
+    border-radius: 0px 0px 15px 15px;
   }
   
 }
