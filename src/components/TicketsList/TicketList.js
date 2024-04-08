@@ -1,15 +1,27 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import * as antd from 'antd';
 
 import Ticket from '../Ticket/Ticket';
 
 const TicketList = () => {
   const sliceTicket = useSelector((state) => state.sliceTicket);
   let tickets = useSelector((state) => state.tickets);
+  const err = useSelector((state) => state.errorMsg);
+  const searchId = useSelector((state) => state.searchId);
   const filtersCheck = useSelector((state) => state.filterCheck);
   const filtersSort = useSelector((state) => state.filterTickets);
+  if (searchId.split(' ').length > 1 || err !== 'no errors here') {
+    return (
+      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+          <antd.Alert message="Технические Шоколадки" description={searchId} type="warning" showIcon />;
+          <antd.Spin />
+        </div>
+      </ul>
+    );
+  }
   if (filtersSort === 'optimal') {
-    tickets = tickets.filter((t) => t.segments[0].duration !== 0 && t.segments[1].duration !== 0);
     tickets.sort((A, B) => A.price / A.segments[0].duration - B.price / B.segments[0].duration);
   }
   if (filtersSort === 'cheap') {

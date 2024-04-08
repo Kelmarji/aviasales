@@ -21,7 +21,7 @@ const App = () => {
       <Online>
         <div className={s.App}>
           <LeftFilter />
-          <div>
+          <div className={s.ROTEBAL}>
             <Header />
             <TicketList />
             <button
@@ -37,13 +37,13 @@ const App = () => {
       </Online>
       <Offline>
         <div className={s.App}>
-          <LeftFilter />
           <div>
-            <Header />
-            <div style={{ height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-              <antd.Alert message="Warning" description={'Ops, connection Lost'} type="warning" showIcon />;
-              <antd.Spin />
-            </div>
+            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                <antd.Alert message="Warning" description={'Ops, check you connection...'} type="warning" showIcon />;
+                <antd.Spin />
+              </div>
+            </ul>
           </div>
         </div>
       </Offline>

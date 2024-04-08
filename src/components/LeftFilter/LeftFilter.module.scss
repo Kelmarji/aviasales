@@ -60,7 +60,10 @@
 }
 
 @media (max-width: 768px) {
-  f.filterList {
+  .filterList {
     font-size: 1rem;
+    width: auto;
+    display: flex;
+    align-items: center;
   }
 }

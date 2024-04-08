@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable indent */
@@ -10,31 +11,34 @@ import TicketService from '../services/aviaSales-service';
 
 const TicketApi = new TicketService();
 
-const searchId = await TicketApi.getSearchId();
+const searchId = await TicketApi.getSearchId()
+  .then((body) => body)
+  .catch((e) => e.message);
 
 export const arrayTickets = () => {
   return async (dispatch) => {
     let stopStatus = false;
 
     while (!stopStatus) {
+      if (searchId.split(' ').length > 1) throw new Error(searchId);
       try {
         const tickets = await TicketApi.getTickets(searchId);
-
         dispatch({ type: 'LOAD_TICKETS', payload: tickets });
+        dispatch({ type: 'LOAD_TICKETS_ERROR', payload: 'no errors here' });
         stopStatus = tickets.stop;
       } catch (error) {
-        // ignor materi
+        dispatch({ type: 'LOAD_TICKETS_ERROR', payload: error.message });
       }
     }
   };
 };
 
-const loggerMiddleware = (store) => (next) => (action) => {
-  console.log('old state', store.getState());
-  const result = next(action);
-  console.log('New state:', store.getState());
-  return result;
-};
+// const loggerMiddleware = (store) => (next) => (action) => {
+//   console.log('old state', store.getState());
+//   const result = next(action);
+//   console.log('New state:', store.getState());
+//   return result;
+// };
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const defaultState = {
@@ -44,9 +48,12 @@ const defaultState = {
   tickets: [],
   loadedTickets: false,
   sliceTicket: 5,
+  errorMsg: '',
 };
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'LOAD_TICKETS_ERROR':
+      return { ...state, errorMsg: action.payload };
     case 'LOAD_TICKETS':
       return {
         ...state,
@@ -95,6 +102,6 @@ const reducer = (state = defaultState, action) => {
       return state;
   }
 };
-const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware, thunk)));
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

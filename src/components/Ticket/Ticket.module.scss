@@ -59,3 +59,11 @@ $grayColor: #a0b0b9;
   justify-content: space-between;
   margin-right: 5%;
 }
+
+@media (max-width: 768px) {
+  .ticketBody {
+    font-size: 1rem;
+    flex-direction: column;
+    width: 77vw;
+  }
+}
