@@ -28,30 +28,31 @@ $checked: rgba(33, 150, 243, 1);
 }
 
 .customChecked::before {
-    position: relative;
-    right: 5px;
-    top: 1px;
-    content: ' ✔ ';
-    padding-right: 1px;
-    color:$checked;
-    width: 13px;
-    height: 13px;
-    border: 1px solid $checked;
-    border-radius: 3px;
-    background: none;
+  background-image: url(check.svg);
+  background-position: 50% 50%;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  position: relative;
+  right: 5px;
+  top: 1px;
+  content: '     ';
+  color: $checked;
+  width: 13px;
+  height: 13px;
+  border: 1px solid $checked;
+  border-radius: 3px;
 }
 
 .customUnchecked::before {
-    position: relative;
-    right: 5px;
-    top: 1px;
-    content: '     ';
-    color:$checked;
-    width: 13px;
-    height: 13px;
-    border: 1px solid $borderUnchecked;
-    border-radius: 3px;
-    background: none;
+  position: relative;
+  right: 5px;
+  top: 1px;
+  content: '     ';
+  color: $checked;
+  width: 13px;
+  height: 13px;
+  border: 1px solid $borderUnchecked;
+  border-radius: 3px;
 }
 
 
