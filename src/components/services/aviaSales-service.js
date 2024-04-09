@@ -9,7 +9,9 @@ export default class TicketService {
   }
 
   async getTickets(searchId) {
-    const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`);
+    const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`).catch((e) => {
+      throw new Error(e.msg);
+    });
     const data = await response.json();
     return data;
   }
