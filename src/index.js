@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 
 import store from './store/store';
 import App from './components/App';
-import logo from './Logo.png';
+import logo from './assets/Logo.png';
 
 const OutPut = () => {
   const loaded = useSelector(({ loadedTickets }) => loadedTickets);
