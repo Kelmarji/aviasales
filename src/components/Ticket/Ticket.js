@@ -27,6 +27,16 @@ const Segm = (props) => {
     return `${hours}:${minutes}` === '00:00' ? '24:00' : `${hours}:${minutes}`;
   };
 
+  const stopsCounter = (count) => {
+    let out = '';
+    if (count.length > 1) {
+      out = `${count.length} пересадки`;
+    };
+    if (count.length === 1) out = '1 пересадка';
+    if (!count.length) out = '0 пересадок';
+    return out;
+  };
+
   return (
     <div className={t.ticketSegment}>
       <div className={t.segmentsInner}>
@@ -39,7 +49,7 @@ const Segm = (props) => {
       </div>
       <div className={t.segmentsInner}>
         <span>
-          {stops.length > 1 ? `${stops.length} пересадки` : stops.length === 1 ? '1 пересадка' : '0·пересадок'}
+          {stopsCounter(stops)}
         </span>
         <span className={t.cunt}>{[stops.join(', ')]}</span>
       </div>

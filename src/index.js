@@ -4,7 +4,7 @@ import './index.scss';
 import { Provider, useSelector } from 'react-redux';
 import { Spin } from 'antd';
 
-import store from './components/store';
+import store from './store/store';
 import App from './components/App';
 import logo from './Logo.png';
 

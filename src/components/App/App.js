@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Online, Offline } from 'react-detect-offline';
 import * as antd from 'antd';
 
-import { arrayTickets } from '../store/store';
+import { arrayTickets } from '../../store/store';
 import Header from '../Header';
 import LeftFilter from '../LeftFilter';
 import TicketList from '../TicketsList';
